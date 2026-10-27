@@ -1,0 +1,69 @@
+name: pages
+
+# Scans fixtures.json and builds the console from JeongJaeSoon/agent-platform
+# at SOURCE_REF around it, then deploys the result to GitHub Pages.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  # The console code the recording was taken against. Session timelines read
+  # fields the recorded stack must have served, so this moves only with a new
+  # recording (README, "다시 녹화하기").
+  SOURCE_REF: 555f6f7d870bb863ec4fb872e254b511b21b3eda
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: demo
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: JeongJaeSoon/agent-platform
+          ref: ${{ env.SOURCE_REF }}
+          path: source
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: 1.3.14
+      - run: bun install --frozen-lockfile
+        working-directory: source
+      - name: No credential, outside address or machine name in the fixtures
+        run: bun source/apps/web/scripts/demo-scan.ts --fixtures demo/fixtures.json --root demo
+      - name: Static build
+        run: DEMO_FIXTURES="$GITHUB_WORKSPACE/demo/fixtures.json" bun run --cwd source/apps/web build:demo
+      # Without the fixture the build falls back to the source's placeholder.
+      - name: The bundle carries this recording
+        run: grep -rqF "\"$(jq -r .recorded_at demo/fixtures.json)\"" source/apps/web/dist-demo/assets
+      - if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: source/apps/web/dist-demo
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
