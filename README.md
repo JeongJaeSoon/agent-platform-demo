@@ -19,7 +19,7 @@
 
 콘솔 코드는 여기 없다. 워크플로가 원본 저장소를 `SOURCE_REF` 커밋으로 받아 공개 전 검사(`apps/web/scripts/demo-scan.ts`)를 돌리고, `vite build --mode demo`로 이 `fixtures.json`을 넣어 빌드한 뒤 Pages에 배포한다. main push마다 다시 배포한다.
 
-`SOURCE_REF`는 녹화한 스택과 같은 화면 코드여야 한다. 지금 녹화는 원본 main `02a9487c`로 띄운 스택에서 했다. 그 뒤 main은 세션 타임라인이 새 이벤트 필드만 읽게 바뀌었으므로(JeongJaeSoon/agent-platform#873), `SOURCE_REF`는 그 이전에 데모 빌드를 담은 커밋(JeongJaeSoon/agent-platform#869 의 커밋)이다. 다음 녹화 때 main 커밋으로 올린다.
+`SOURCE_REF`는 녹화한 스택과 같은 화면 코드여야 한다. 지금 녹화는 원본 main `77b91d84`로 띄운 스택에서 했고, `SOURCE_REF`는 그 위에 녹화기와 화면 수정(JeongJaeSoon/agent-platform#896)을 머지한 main 커밋이다. #896은 웹 화면과 녹화 스크립트만 바꿔서 API 응답은 녹화한 스택과 같다.
 
 ### `.gitleaksignore`
 
