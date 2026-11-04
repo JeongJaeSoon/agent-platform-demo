@@ -1,6 +1,6 @@
 name: pages
 
-# Scans fixtures.json and builds the console from JeongJaeSoon/agent-platform
+# Scans fixtures.json and builds the console from JeongJaeSoon/werft
 # at SOURCE_REF around it, then deploys the result to GitHub Pages.
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
           persist-credentials: false
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          repository: JeongJaeSoon/agent-platform
+          repository: JeongJaeSoon/werft
           ref: ${{ env.SOURCE_REF }}
           path: source
           persist-credentials: false
