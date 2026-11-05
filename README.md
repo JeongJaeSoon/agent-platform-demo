@@ -19,7 +19,7 @@
 
 콘솔 코드는 여기 없다. 워크플로가 원본 저장소를 `SOURCE_REF` 커밋으로 받아 공개 전 검사(`apps/web/scripts/demo-scan.ts`)를 돌리고, `vite build --mode demo`로 이 `fixtures.json`을 넣어 빌드한 뒤 Pages에 배포한다. main push마다 다시 배포한다.
 
-`SOURCE_REF`는 녹화한 스택과 같은 화면 코드여야 한다. 지금 녹화는 원본 main `4feff3c47`로 띄운 스택에서 2026-11-05 03:41 UTC(`recorded_at` `2026-11-05T03:41:43.432Z`)에 했다. `SOURCE_REF`는 그 뒤 첫 main 커밋 `db069a63d`다. 두 커밋 사이에 `apps/web`·`packages/ui`는 `demo-scan` 스크립트 말고 바뀐 것이 없고, 이 커밋이 `demo-scan`이 도구 카탈로그 id를 이메일로 읽지 않게 고친 커밋이기 때문이다.
+`SOURCE_REF`는 녹화한 스택과 같은 화면 코드여야 한다. 지금 녹화는 원본 main `4feff3c47`로 띄운 스택에서 2026-11-05 03:41 UTC(`recorded_at` `2026-11-05T03:41:43.432Z`)에 했다. `SOURCE_REF`는 그 뒤 main 커밋 `db069a63d`다. 두 커밋 사이에 `apps/web`·`packages/ui`는 `demo-scan` 스크립트 말고 바뀐 것이 없고, 이 커밋이 `demo-scan`이 도구 카탈로그 id를 이메일로 읽지 않게 고친 커밋이기 때문이다.
 
 ### `.gitleaksignore`
 
