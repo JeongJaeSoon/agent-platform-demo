@@ -5961,7 +5961,7 @@
             "auth_kind": "api_key",
             "credential": {
               "source": "external",
-              "secret_id": "agent-platform/local/fake-messages"
+              "secret_id": "werft/local/fake-messages"
             },
             "created_at": "2026-11-05T02:59:38.662Z",
             "disabled_at": null
@@ -5998,7 +5998,7 @@
             ],
             "credential": {
               "source": "external",
-              "secret_id": "agent-platform/local/fake-mcp"
+              "secret_id": "werft/local/fake-mcp"
             },
             "created_at": "2026-11-05T02:59:38.662Z",
             "disabled_at": null

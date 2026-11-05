@@ -1,4 +1,4 @@
-# agent-platform 콘솔 데모
+# Werft 콘솔 데모
 
 [Werft](https://github.com/JeongJaeSoon/werft) 웹 콘솔의 읽기 전용 정적 데모다. 서버·DB·모델 없이 브라우저에서 바로 눌러 본다.
 
