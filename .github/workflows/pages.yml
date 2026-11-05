@@ -15,7 +15,7 @@ env:
   # The console code the recording was taken against. Session timelines read
   # fields the recorded stack must have served, so this moves only with a new
   # recording (README, "다시 녹화하기").
-  SOURCE_REF: 896077b8c1f6bd2223285b65063290659e798f1a
+  SOURCE_REF: db069a63d24a448d244039909669135fc7927a70
 
 jobs:
   build:
